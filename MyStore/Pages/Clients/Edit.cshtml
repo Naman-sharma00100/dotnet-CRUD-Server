@@ -1,0 +1,83 @@
+﻿@page
+@model MyStore.Pages.Clients.EditModel
+@{
+}
+
+
+<br />
+<h1>
+	 Edit Details
+</h1>
+
+@* Creating an alert for an empty field .For that we are checking that if the error message length is >0 ,that means there have been some field to be empty  *@
+
+@if(Model.errorMessage.Length >0)
+{
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		<strong>"Field mein kuch problem hai"</strong>
+		<br/>
+		<strong>@Model.errorMessage</strong>
+		<button type="button" class=" btn-close" data-bs-dismiss="alert" label="Close"></button>
+	</div>
+}
+
+
+
+<form method="POST">
+	<input type="hidden" name="id" value="@Model.ClientInfo.id" />
+	<div class="row mb-3">
+		<label class="col-sm-3 col-form-label">Name</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" name="name" value="@Model.ClientInfo.name" />   
+		</div>
+	</div> 
+
+	<div class="row mb-3">
+		<label class="col-sm-3 col-form-label">Email</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" name="email" value="@Model.ClientInfo.email" />
+		</div>
+	</div>
+
+	<div class="row mb-3">
+		<label class="col-sm-3 col-form-label">Phone</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" name="phone" value="@Model.ClientInfo.phone" />
+		</div>
+	</div>
+
+	<div class="row mb-3">
+		<label class="col-sm-3 col-form-label">Address</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" name="address" value="@Model.ClientInfo.address" />
+		</div>
+	</div>
+
+	@* 2 button will be created: One for Submit and another for Delete  *@
+
+	<div class="row mb-3">
+		<div class="offset-sm-3 col-sm-3 d-grid">
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</div>
+
+		<div class="col-sm-3 d-grid">
+			<a class="btn btn-outline-primary" href="/" role="button">Cancel</a>
+		</div>
+	</div>
+
+	
+	@* Success Message can be created if success length is >0  *@
+
+	@if(Model.successMessage.Length>0)
+	{
+		<div class=" row mb-3">
+			<div class="col-sm-9">
+				<div class="alert alert-success alert-dismissible fade show" role="alert">
+					<strong>@Model.successMessage</strong>
+					<button type="button" class=" btn-close" data-bs-dismiss="alert" label="Close"></button>
+				</div>
+			</div>
+		</div>
+	}
+
+</form>

@@ -1,0 +1,37 @@
+﻿@page
+@using System.Data.SqlClient;
+
+@{
+	try
+	{
+		// Request.Query provides a way to read and extract these query string parameters from the URL so that you can use them in your server-side code.
+
+		String id = Request.Query["id"];
+
+
+		String connectionString = "Data Source=localhost,1433;Initial Catalog=myStore;User ID=sa;Password=Numcys@010";
+
+		using (SqlConnection connection = new SqlConnection(connectionString))
+		{
+			connection.Open();
+
+			// Wrtitng Sql Query to delete the Requested "id" from our database
+
+			String sql = "DELETE FROM clients WHERE id=@id";
+			using (SqlCommand command = new SqlCommand(sql, connection))
+			{
+				command.Parameters.AddWithValue("@id", id);
+				command.ExecuteNonQuery();
+			}
+		}
+	}
+	catch (Exception ex)
+	{
+
+		Console.WriteLine(ex.Message);
+	}
+
+	Response.Redirect("/Clients/Index");
+
+	
+}
